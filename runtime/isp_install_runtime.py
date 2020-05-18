@@ -32,11 +32,13 @@ class retVals:
 
 bare_bsp = {
     "qemu": "hifive_bsp",
-    "vcu118": "vcu118_bsp"
+    "vcu118": "vcu118_bsp",
+    "refpipe": "refpipe_bsp"
 }
 
 sim_aliases = {
-    "vcs": "vcu118"
+    "vcs": "vcu118",
+    "refpipe": "refpipe"
 }
 
 def getTemplatesDir():
@@ -110,7 +112,7 @@ def main():
     Currently supported: frtos, sel4, bare
     ''')
     parser.add_argument("sim", type=str, help='''
-    Currently supported: qemu, vcu118, vcs
+    Currently supported: qemu, vcu118, vcs, refpipe
     ''')
     parser.add_argument("-b", "--build-dir", type=str, default=".", help='''
     Directory containing the Makefile for the main executable.
