@@ -31,6 +31,7 @@ MODULE_FILES := isp_qemu.py
 MODULE_FILES += isp_renode.py
 MODULE_FILES += isp_vcu118.py
 MODULE_FILES += isp_vcs.py
+MODULE_FILES += isp_refpipe.py
 
 MODULES := $(patsubst %,modules/%,$(MODULE_FILES))
 
