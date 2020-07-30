@@ -40,12 +40,23 @@ def copyPolicySources(policy_dir, output_dir, fpga, processor):
     return True
 
 
-def buildPexKernel(policy_name, output_dir, fpga, processor):
+def buildPexKernel(policy_name, output_dir, fpga, processor, extra_env=None):
     logger.debug("Building PEX kernel")
     env = dict(os.environ)
 
     env["FPGA"] = fpga
     env["PROCESSOR"] = processor
+
+    if extra_env:
+        for k, v in extra_env.items():
+            k = str(k, 'utf-8')
+            v = str(v, 'utf-8')
+
+            # Append some keys, replace the rest
+            if k in ('PATH', 'CFLAGS', 'LDFLAGS'):
+                env[k] = v + env[k]
+            else:
+                env[k] = v
 
     if policy_name.endswith("-debug"):
         policy_name = policy_name.replace("-debug", "")

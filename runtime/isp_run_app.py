@@ -106,7 +106,7 @@ def main():
     Module for simulating/running application. Must be installed to $ISP_PREFIX/runtime_modules
     ''')
     parser.add_argument("-r", "--runtime", type=str, default="bare", help='''
-    Currently supported: frtos, sel4, bare (bare metal) (default), stock_frtos, stock_sel4, stock_bare
+    Currently supported: frtos, sel4, bare (bare metal) (default), refpipe, stock_frtos, stock_sel4, stock_bare
     ''')
     parser.add_argument("-a", "--arch", type=str, help='''
     Architecture of executable. Currently supported: {}. Autodetect by default
