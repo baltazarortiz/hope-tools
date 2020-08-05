@@ -178,8 +178,8 @@ def main():
     if args.output == "":
         output_dir = os.getcwd()
 
-    if args.runtime not in ["frtos", "sel4", "bare", "stock_frtos", "stock_sel4", "stock_bare"]:
-        logger.error("Invalid choice of runtime. Valid choices: frtos, sel4, bare, stock_frtos, stock_sel4, stock_bare")
+    if args.runtime not in ["frtos", "sel4", "refpipe", "bare", "stock_frtos", "stock_sel4", "stock_refpipe", "stock_bare"]:
+        logger.error("Invalid choice of runtime. Valid choices: frtos, sel4, refpipe, bare, stock_frtos, stock_sel4, stock_refpipe, stock_bare")
         return
 
     if not args.arch:
