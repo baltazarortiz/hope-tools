@@ -37,7 +37,7 @@ CLEAN_PROJECTS := $(patsubst %,clean-%,$(PROJECTS))
 .PHONY: $(PROJECTS)
 .PHONY: $(CLEAN_PROJECTS)
 
-all: runtime
+all: runtime chipyard
 	$(MAKE) $(PROJECTS)
 
 policy-engine: policy-tool
@@ -66,6 +66,11 @@ $(ISP_PREFIX):
 
 $(CLEAN_PROJECTS):
 	$(MAKE) -f Makefile.isp -C ../$(@:clean-%=%) clean
+
+chipyard: $(ISP_PREFIX)
+	if [ ! -d $(ISP_PREFIX)/chipyard-ref-pipe ]; then \
+		ln -s $(abspath ../chipyard-ref-pipe) $(ISP_PREFIX)/chipyard-ref-pipe; \
+	fi
 
 runtime: $(ISP_PREFIX) llvm-project/compiler-rt
 	$(MAKE) -C runtime install
