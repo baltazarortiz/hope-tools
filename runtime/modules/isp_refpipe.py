@@ -200,11 +200,9 @@ def generateTagMemHexdump(tag_file_path, policy):
     return commented_hex_path, loadable_hex_path, min_taginfo_path
 
 def tagInit(exe_path, run_dir, policy_dir, soc_cfg, arch, pex_kernel_path):
-    logger.info("Tag init starting")
+    logger.info("Tag init starting. Using PEX kernel at path: {}".format(pex_kernel_path))
 
     tag_file_path = os.path.join(run_dir, "bininfo", os.path.basename(exe_path) + ".taginfo")
-
-    logger.info("Using PEX kernel at path: {}".format(pex_kernel_path))
 
     if not isp_utils.generateTagInfo(exe_path, run_dir, policy_dir, soc_cfg=soc_cfg, arch=arch):
         return False
@@ -285,9 +283,9 @@ def runStock(exe_path, ap_log, no_log, arch):
 def genTrace(exe_path, ap_log, run_log, arch):
 
     # Default to 32 bit
-    config = "RV32RocketConfig"
+    config = "RV32PIPETraceConfig"
     if arch == "rv64":
-        config = "RocketConfig"
+        config = "RV32PIPETraceConfig"
 
     stock_rocket_sim_path = os.path.join(chipyard_run_path, "simulator-chipyard-%s-debug" % config)
 
